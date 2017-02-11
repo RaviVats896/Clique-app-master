@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GraphActivity"></activity>
+        <activity android:name=".GraphActivity" />
+
         <service
             android:name=".SimpleIme"
             android:label="@string/simple_ime"
@@ -30,6 +31,8 @@
                 <action android:name="android.view.InputMethod" />
             </intent-filter>
         </service>
+
+        <activity android:name=".ChangeUserName"></activity>
     </application>
 
 </manifest>

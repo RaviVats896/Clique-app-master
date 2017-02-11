@@ -40,12 +40,7 @@ public class MainActivity extends AppCompatActivity {
         retrieveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = usernameInput.getText().toString().trim();
-                writeNewUser(username, getDate(), "06-48", 0.2, 0.5, 0.3);
-                writeNewUser(username, getDate(), "06-50", 0.5, 0.3, 0.2);
-                writeNewUser(username, getDate(), "06-54", 0.3, 0.4, 0.3);
-                writeNewUser(username, getDate(), "06-57", 0.1, 0.4, 0.5);
-
+                startActivity(new Intent(MainActivity.this, ChangeUserName.class));
             }
         });
         submitButton.setOnClickListener(new View.OnClickListener() {
