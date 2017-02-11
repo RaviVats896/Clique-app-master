@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "331371212208",
+    "firebase_url": "https://clique-80523.firebaseio.com",
+    "project_id": "clique-80523",
+    "storage_bucket": "clique-80523.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331371212208:android:3afbeaac901f04fc",
+        "android_client_info": {
+          "package_name": "com.example.halfbloodprince.clique"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "331371212208-hk27ode7o83qhfgsmn5n7q05j8g85pdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrZ9Ms-iZ79RglMpu-lBfQg510ilaEGHo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "331371212208-hk27ode7o83qhfgsmn5n7q05j8g85pdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
