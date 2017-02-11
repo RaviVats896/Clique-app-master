@@ -1,9 +1,18 @@
 package com.example.halfbloodprince.clique;
 
+import android.*;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -72,8 +81,33 @@ public class GraphActivity extends AppCompatActivity {
         lineG.animateXY(2000, 2000);
         Log.i(TAG,"6");
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mymenu, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.call_menu:
+                callThePerson();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    public void callThePerson(){
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:9905264774"));
 
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
+    }
     private ArrayList<LineDataSet> getYAxis(){
         int colors[]={Color.GREEN,Color.BLUE,Color.RED,Color.YELLOW, Color.LTGRAY};
         String nameT[]={"Positive", "Neutral", "Negative"};
