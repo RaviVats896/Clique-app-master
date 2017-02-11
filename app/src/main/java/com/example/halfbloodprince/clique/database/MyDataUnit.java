@@ -25,12 +25,18 @@ import android.util.Log;
 //import org.json.JSONArray;
 
 import com.example.halfbloodprince.clique.MainActivity;
+import com.example.halfbloodprince.clique.TimeStamp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by rsinha on 2/11/17.
@@ -42,11 +48,13 @@ public class MyDataUnit {
     private ArrayList<Emotions> emotions;
     private String TAG = "MyDatabase";
     private Context context;
+    private DatabaseReference mDatabase;
 
     public MyDataUnit(String text, Context cont) {
         emotions = new ArrayList<Emotions>();
         this.text = text;
         context = cont;
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         getSentiments();
     }
 
@@ -176,7 +184,7 @@ public class MyDataUnit {
                 if(neutral<0.0){
                     neutral=0.0;
                 };
-                ((MainActivity) cont).writeNewUser(SharedP.getMyID(cont),positive,negative,neutral);
+                writeNewUser(SharedP.getMyID(cont),positive,negative,neutral);
             } catch (Exception e) {
                 Log.i(TAG,"Here 226 "+e.getMessage());
             }
@@ -185,10 +193,35 @@ public class MyDataUnit {
             Log.i(TAG, "Done");
             return null;
         }
-
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
         }
+    }
+    private void callFromServer(){
+        //                Log.i(TAG,"Here 223 : "+text);
+//                TextAPIClient client = new TextAPIClient("2ba72280", "15637380186be8e356ff0b7e564e5ad2");
+//                SentimentParams.Builder builder = SentimentParams.newBuilder();
+//                builder.setText(text);
+//                Log.i(TAG,"Here 224 ");
+//                Sentiment sentiment = client.sentiment(builder.build());
+//                Log.i(TAG,"Here 225 ");
+//                Log.i(TAG,sentiment.toString());
+
+    }
+    private void writeNewUser(String userId, Double positive, Double negative, Double nuetral) {
+        TimeStamp timeStamp = new TimeStamp(positive, negative, nuetral);
+        mDatabase.child("users").child(userId).child(getDate()).child(getTime()).setValue(timeStamp);
+    }
+    private String getDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        Calendar calendar = Calendar.getInstance();
+        return sdf.format(calendar.getTime());
+    }
+
+    private String getTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh-mm-ss", Locale.ENGLISH);
+        Calendar calendar = Calendar.getInstance();
+        return sdf.format(calendar.getTime());
     }
 }

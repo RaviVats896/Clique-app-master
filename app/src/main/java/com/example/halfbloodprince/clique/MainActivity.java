@@ -68,10 +68,7 @@ public class MainActivity extends AppCompatActivity {
         TimeStamp timeStamp = new TimeStamp(positive, negative, nuetral);
         mDatabase.child("users").child(userId).child(dateId).child(timeId).setValue(timeStamp);
     }
-    public void writeNewUser(String userId, Double positive, Double negative, Double nuetral) {
-        TimeStamp timeStamp = new TimeStamp(positive, negative, nuetral);
-        mDatabase.child("users").child(userId).child(getDate()).child(getTime()).setValue(timeStamp);
-    }
+
 
     private String getDate() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
@@ -80,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 }
 
 private String getTime() {
-    SimpleDateFormat sdf = new SimpleDateFormat("hh-mm", Locale.ENGLISH);
+    SimpleDateFormat sdf = new SimpleDateFormat("hh-mm-ss", Locale.ENGLISH);
     Calendar calendar = Calendar.getInstance();
     return sdf.format(calendar.getTime());
 }
