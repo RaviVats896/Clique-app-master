@@ -39,6 +39,7 @@ public class MyDataBase {
         return arrayList;
     }
 
+
     public static void createTable(Context cont){
         initiate(cont);
         String table=SharedP.getMyID(cont);
@@ -109,6 +110,29 @@ public class MyDataBase {
             Log.i(T, ex.getMessage());
         }
         deleteAll(context);
+    }
+
+    public static String getDataString(Context context){
+        createTable(context);
+        String table=SharedP.getMyID(context);
+
+        try{
+            String sql="SELECT * FROM `"+table+"`";
+            Cursor cursor = sdb.rawQuery(sql,null);
+            StringBuffer sb=new StringBuffer();
+            if(cursor!=null && cursor.moveToFirst()){
+                do{
+                    sb.append(cursor.getString(0)+" ");
+                }while(cursor.moveToNext());
+            }
+            Log.i(T, "It reached here . 22 :"+sb.toString());
+            //MyDataUnit mdb=new MyDataUnit(sb.toString(), context);
+            return sb.toString();
+        }catch(Exception ex){
+            Log.i(T, ex.getMessage());
+        }
+        //deleteAll(context);
+        return "";
     }
 
 }

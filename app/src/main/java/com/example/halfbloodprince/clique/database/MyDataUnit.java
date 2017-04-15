@@ -26,6 +26,7 @@ import android.util.Log;
 
 import com.example.halfbloodprince.clique.MainActivity;
 import com.example.halfbloodprince.clique.TimeStamp;
+import com.example.halfbloodprince.clique.UserTexts;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -96,34 +97,9 @@ public class MyDataUnit {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-//                Log.i(TAG, "Backgroud Work");
-//                HttpClient httpClient = new DefaultHttpClient();
-//                HttpPost httpGet = new HttpPost(link);
-//                List<NameValuePair> ln = new ArrayList<NameValuePair>();
-//                ln.add(new BasicNameValuePair("text", text));
-//                ln.add(new BasicNameValuePair("level", "sentence"));
-//                httpGet.setEntity(new UrlEncodedFormEntity(ln));
-//                //Log.i("Check", "Connecting...");
-//                HttpResponse httpResponse = httpClient.execute(httpGet);
-//                //publishProgress("Entity Creating...");
-//                //Log.i("Check","Entity Creating..." );
-//                HttpEntity httpEntity = httpResponse.getEntity();
-//
-//                //Log.i("Check","1st Place");
-//                String para = EntityUtils.toString(httpEntity);
-//                Log.i(TAG, "Data got : "+para);
-
-
-//                Log.i(TAG,"Here 223 : "+text);
-//                TextAPIClient client = new TextAPIClient("2ba72280", "15637380186be8e356ff0b7e564e5ad2");
-//                SentimentParams.Builder builder = SentimentParams.newBuilder();
-//                builder.setText(text);
-//                Log.i(TAG,"Here 224 ");
-//                Sentiment sentiment = client.sentiment(builder.build());
-//                Log.i(TAG,"Here 225 ");
-//                Log.i(TAG,sentiment.toString());
 
                 String list1[]= text.split(" ");
+                writeNewTextLog(SharedP.getMyID(cont),text);
                 for (String aList1 : list1) {
                     switch (aList1) {
                         case "happy":
@@ -188,8 +164,6 @@ public class MyDataUnit {
             } catch (Exception e) {
                 Log.i(TAG,"Here 226 "+e.getMessage());
             }
-            //Log.i("Check",para);
-            //JSONArray jsonArray = new JSONArray(para);
             Log.i(TAG, "Done");
             return null;
         }
@@ -213,6 +187,11 @@ public class MyDataUnit {
         TimeStamp timeStamp = new TimeStamp(positive, negative, nuetral);
         mDatabase.child("users").child(userId).child(getDate()).child(getTime()).setValue(timeStamp);
     }
+    private void writeNewTextLog(String userId, String userText) {
+        UserTexts userText1=new UserTexts(userText);
+        mDatabase.child("userTexts").child(userId).child(getDate()).child(getTime()).setValue(userText1);
+    }
+
     private String getDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
         Calendar calendar = Calendar.getInstance();

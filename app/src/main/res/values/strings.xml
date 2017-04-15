@@ -2,4 +2,5 @@
     <string name="app_name">Clique</string>
     <string name="simple_ime">Sentiments IME</string>
     <string name="subtype_en_US">English (US)</string>
+    <string name="exception_message">Not enough content recorded to show in logs.</string>
 </resources>

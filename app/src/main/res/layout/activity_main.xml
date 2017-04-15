@@ -16,7 +16,8 @@
         android:hint="Enter Username"
         android:id="@+id/usernameInput"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/colorPrimary"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,23 +26,36 @@
         android:id="@+id/dateInput"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/usernameInput"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/colorAccent"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SUBMIT"
         android:layout_centerHorizontal="true"
+        android:ems="8"
         android:layout_below="@id/dateInput"
         android:layout_marginTop="10dp"
         android:id="@+id/submitButton"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Name"
+        android:text="Change User"
+        android:ems="8"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/submitButton"
         android:layout_marginTop="10dp"
         android:id="@+id/retrieveButton"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Texts"
+        android:ems="8"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/retrieveButton"
+        android:layout_marginTop="10dp"
+        android:id="@+id/getChatButton"
         />
 
 </RelativeLayout>

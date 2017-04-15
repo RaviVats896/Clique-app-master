@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    Button submitButton,retrieveButton;
+    Button submitButton,retrieveButton, getChats;
     String TAG = "Firebase";
     String username=null;
     String inputdate=null;
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         retrieveButton =(Button) findViewById(R.id.retrieveButton);
         usernameInput= (EditText) findViewById(R.id.usernameInput);
         dateInput= (EditText) findViewById(R.id.dateInput);
+        getChats = (Button) findViewById(R.id.getChatButton);
         retrieveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,15 +49,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 username=usernameInput.getText().toString().trim();
                 inputdate=dateInput.getText().toString().trim();
-//                username=usernameInput.getText().toString().trim();
-          //      writeNewUser(username,getDate(),getTime(),0.3,0.4,0.7);
-                //TODO make the system to call new activity to display the graphs
+                if(username.isEmpty()||inputdate.isEmpty()){
+                    username="U0000";
+                    inputdate="18-02-2017";
+                }
                 Intent i=new Intent(MainActivity.this, GraphActivity.class);
                 i.putExtra("user",username);
                 i.putExtra("date",inputdate);
                 startActivity(i);
             }
         });
+        getChats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                username=usernameInput.getText().toString().trim();
+                inputdate=dateInput.getText().toString().trim();
+                if(username.isEmpty()||inputdate.isEmpty()){
+                    username="U0000";
+                    inputdate="19-02-2017";
+                }
+                Intent intent=new Intent(MainActivity.this, GetChat.class);
+                intent.putExtra("user",username);
+                intent.putExtra("date",inputdate);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void writeNewUser(String userId, String dateId, String timeId, Double positive, Double negative, Double nuetral) {

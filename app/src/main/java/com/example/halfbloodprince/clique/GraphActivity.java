@@ -43,8 +43,8 @@ public class GraphActivity extends AppCompatActivity {
         myArray=new ArrayList<TimeStamp>();
         Bundle bundle=getIntent().getExtras();
         if(bundle!=null){
-            user=bundle.getString("user","C000");
-            date=bundle.getString("date","10-02-2017");
+            user=bundle.getString("user","U0000");
+            date=bundle.getString("date","11-02-2017");
         }
         mDatabase.child("users").child(user).child(date).addValueEventListener(new ValueEventListener() {
             @Override
@@ -52,9 +52,8 @@ public class GraphActivity extends AppCompatActivity {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Iterable<DataSnapshot> times= dataSnapshot.getChildren();
-                Iterator<DataSnapshot> iterator=times.iterator();
-                while(iterator.hasNext()){
-                    TimeStamp value=iterator.next().getValue(TimeStamp.class);
+                for (DataSnapshot time : times) {
+                    TimeStamp value = time.getValue(TimeStamp.class);
                     Log.d(TAG, "Value is: " + value.positive + " " + value.negative);
                     myArray.add(value);
                 }

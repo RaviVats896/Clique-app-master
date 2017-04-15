@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/call_menu"
         android:icon="@android:drawable/sym_call_outgoing"
-        android:title="call"
+        android:title="Call an expert"
         android:showAsAction="always"/>
 </menu>

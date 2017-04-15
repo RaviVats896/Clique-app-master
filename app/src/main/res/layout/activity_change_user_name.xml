@@ -15,16 +15,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:hint="Enter new username"
         android:ems="10"
         android:id="@+id/txtuser"
-        android:layout_weight="1" />
+        android:layout_marginTop="10dp"
+        android:textColorHint="@color/colorPrimaryDark"/>
 
     <Button
-        android:text="Button"
-        android:layout_width="match_parent"
+        android:text="Change username"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_weight="1"
-        android:onClick="changedate" />
+        android:id="@+id/changeButton"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:onClick="changeDate" />
+
+    <Button android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/clearButton"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:onClick="changeDate"/>
 </LinearLayout>
